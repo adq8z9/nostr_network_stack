@@ -1,1 +1,3 @@
-# nostr_network_stack
+# Note
+
+Nip for a nostr network stack.
