@@ -6,7 +6,7 @@ This nip should introduce a way of communication between a "Virtual Client" with
 The "Virtual/Hidden Relay" creates a nostr-nsec/npub identity, or is attributed with an existing one. It publishes a kind `10112`-event with relays on which it listens to nns-requests and sends nns-responses.
 The kind `10112`-event follows the structure of NIP65 and NIP51 and signals that the pukey is reachable for nns-communication there.
 
-The user of the "Virtual/Hidden Relay" references the "Virtual Relay" in events that need a `r`-tag (e.g. kind `10002`), with ["r", "nns://npu1..."].
+The user of the "Virtual/Hidden Relay" references the "Virtual Relay" in events that need a `r`-tag (e.g. kind `10002`), with ["r", "nns://npu1...", "supported encryptions by relay, e.g. as in NIP47 info-event, e.g. "nip44_v2 nip04"].
 
 
 The nns-event has the following pattern:
@@ -18,8 +18,9 @@ The nns-event has the following pattern:
   "kind": 27901, // as defined in NIP-01 an ephemeral kind-number is used for this event-type
   "tags": [
     ["p", <32-bytes lowercase hex-encoded public key of the receiver of the message (e.g. "Virtual/Hidden Relay" or "Virtual Client">],
-  ]
-  "content": nip44_encrypt({
+    ["encryption", <definition of encryption, compare e.g. use in NIP47, e.g. "nip44_v2">]
+  ],
+  "content": encrypt_as_defined_in_encryption_tag({
     <messages between client and relay as defined in e.g. NIP01, NIP77, ... in the nostr-protocol>
   }),
   "sig": <64-bytes lowercase hex of the signature of the sha256 hash of the serialized event data, which is the same as the "id" field>
