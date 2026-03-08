@@ -19,7 +19,8 @@ The kind `10112`-event follows the structure of NIP65 and NIP51 and signals that
 }
 ~~~
 
-The user of the "Virtual/Hidden Relay" references the "Virtual Relay" in events that need a `r`-tag (e.g. kind `10002`), with ["r", "nns://npu1..."].
+
+The user of the "Virtual/Hidden Relay" references the "Virtual Relay" in events that need a `r`-tag (e.g. kind `10002`), with ["r", "nns://npub1..."], or alternatively with ["r", "nns://nprofile1..."] (to include a relay hint directly, where to find the 10112 and 10113 events).
 
 
 The "Virtual/Hidden Relay" delivers on request a nostr-info event, in the following structure:
